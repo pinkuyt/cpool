@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "swu_task.hpp"
+#include "cpool_task.hpp"
 
 class Result
 {
@@ -36,7 +36,7 @@ int main(int argc, char const* argv [])
    std::cout << n << " concurrent threads are supported.\n";
 
    Component caller;
-   swu::TaskManager pool;
+   cpool::TaskManager pool;
    pool.start();
 
    std::cout  << "\n=======================================\n"

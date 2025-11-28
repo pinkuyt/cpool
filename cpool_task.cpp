@@ -1,7 +1,7 @@
-#include "swu_task.hpp"
+#include "cpool_task.hpp"
 
 
-namespace swu
+namespace cpool
 {
    TaskManager::TaskManager(unsigned int size)
       : isRunning {false}, poolSize {size},

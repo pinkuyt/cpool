@@ -3,7 +3,7 @@ CXXFLAGS=-c \
 		-Wall \
 		-std=c++11
 
-all: main.o swu_task.o
+all: main.o cpool_task.o
 	@echo Linking objects...
 	@g++ -o test_app $^ -lpthread
 

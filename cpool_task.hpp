@@ -1,13 +1,13 @@
 /**
- * @file       swu_task.h
+ * @file       cpool_task.h
  * @author     Cuong Phan  (cpu1hc) <cuong.phananhdung@vn.bosch.com>
  * @date       Fri 22 May 2020
  * @copyright  Robert Bosch Car Multimedia GmbH
  * @brief      Asynchronous task creation & management.
  */
 
-#ifndef SWU_TASK_H
-#define SWU_TASK_H
+#ifndef CPOOL_TASK_H
+#define CPOOL_TASK_H
 
 #include <thread>
 #include <mutex>
@@ -35,7 +35,7 @@
  * Rational for callback: send loopback message to main thread
  */
 
-namespace swu {
+namespace cpool {
 class TaskManager
 {
    public:
@@ -54,7 +54,7 @@ class TaskManager
       {
          using ReturnType = typename std::result_of<FuncType(ArgsType...)>::type;
 
-         if (function == nullptr) 
+         if (function == nullptr)
          {
             // No point in setting up null task
             // return invalid future object, can be verified via 'valid()' function
@@ -82,7 +82,7 @@ class TaskManager
                std::future<void>
             >::type
       {
-         if (function == nullptr || callback == nullptr) 
+         if (function == nullptr || callback == nullptr)
          {
             // No point in setting up null task
             // return invalid future object, can be verified via 'valid()' function
@@ -105,7 +105,7 @@ class TaskManager
       }
 
 
-      // for cases of callback is a member function, 
+      // for cases of callback is a member function,
       // in which the first param will be the caller's instance
       template<class FuncType, class CallbackType, class CallerType, class... ArgsType>
       auto dispatchCallback(FuncType&& function, CallbackType&& callback, CallerType&& instance, ArgsType&&... args)
@@ -115,7 +115,7 @@ class TaskManager
                std::future<void>
             >::type
       {
-         if (function == nullptr || callback == nullptr) 
+         if (function == nullptr || callback == nullptr)
          {
             // No point in setting up null task
             // return invalid future object, can be verified via 'valid()' function
@@ -136,7 +136,7 @@ class TaskManager
          pushTask(newTask);
          return taskResult;
       }
-      
+
       template<class FuncType, class CallbackType, class CallerType, class... ArgsType>
       auto dispatchCallback(FuncType&& function, CallbackType&& callback, CallerType&& instance, ArgsType&&... args)
          -> typename std::enable_if<
@@ -145,7 +145,7 @@ class TaskManager
                std::future<void>
             >::type
       {
-         if (function == nullptr || callback == nullptr) 
+         if (function == nullptr || callback == nullptr)
          {
             // No point in setting up null task
             // return invalid future object, can be verified via 'valid()' function
